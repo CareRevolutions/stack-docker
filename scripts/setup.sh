@@ -9,14 +9,12 @@ if [ -f "$confdir/elasticsearch/elasticsearch.keystore" ]; then
 fi
 
 PW=$(openssl rand -base64 16;)
-ELASTIC_PASSWORD="${ELASTIC_PASSWORD:-$PW}"
+ELASTIC_PASSWORD="elasticpwd"
 export ELASTIC_PASSWORD
 docker-compose -f docker-compose.yml -f docker-compose.setup.yml up setup_elasticsearch
 
-# setup kibana and logstash (and system passwords)
-docker-compose -f docker-compose.yml -f docker-compose.setup.yml up setup_kibana setup_logstash
-# setup beats and apm server
-docker-compose -f docker-compose.yml -f docker-compose.setup.yml up setup_auditbeat setup_filebeat setup_heartbeat setup_metricbeat setup_packetbeat setup_apm_server
+# setup kibana (and system passwords)
+docker-compose -f docker-compose.yml -f docker-compose.setup.yml up setup_kibana
 
 printf "Setup completed successfully. To start the stack please run:\n\t docker-compose up -d\n"
 printf "\nIf you wish to remove the setup containers please run:\n\tdocker-compose -f docker-compose.yml -f docker-compose.setup.yml down --remove-orphans\n"

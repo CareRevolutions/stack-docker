@@ -44,7 +44,7 @@ First we need to:
 
 1. set default password
 2. create keystores to store passwords
-3. install dashboards, index patterns, etc.. for beats and apm
+3. install dashboards, index patterns, etc..
 
 This is accomplished using the setup.yml file:
 ```
@@ -55,8 +55,7 @@ Please take note after the setup completes it will output the password
 that is used for the `elastic` login.
 
 Now we can launch the stack with `docker-compose up -d` to create a demonstration Elastic Stack with
-Elasticsearch, Kibana, Logstash, Auditbeat, Metricbeat, Filebeat, Packetbeat,
-and Heartbeat.
+Elasticsearch and Kibana,
 
 Point a browser at [`http://localhost:5601`](http://localhost:5601) to see the results.
 > *NOTE*: Elasticsearch is now setup with self-signed certs.
